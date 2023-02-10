@@ -4,7 +4,6 @@ package com.example.youtubeapp.ui.internet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.youtubeapp.base.BaseFragment
 import com.example.youtubeapp.databinding.FragmentErrorBinding
 import com.example.youtubeapp.ui.playlist.PlaylistViewModel
@@ -30,7 +29,8 @@ class ErrorFragment : BaseFragment<FragmentErrorBinding, PlaylistViewModel>() {
         checkInternet.observe(this) { isConnected ->
             binding.btnTryAgain.setOnClickListener {
                 if (isConnected) {
-                    findNavController().navigateUp()
+
+
                 }
             }
         }

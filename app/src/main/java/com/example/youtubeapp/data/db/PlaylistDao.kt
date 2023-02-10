@@ -9,9 +9,8 @@ import com.example.youtubeapp.model.Playlist
 interface PlaylistDao {
 
     @Insert
-    fun insert(playlist: Playlist)
+    suspend fun insert(playlist: Playlist)
 
     @Query("SELECT * FROM playlist")
-    fun getPlaylist(): Playlist
-
+    suspend fun getPlaylist(): Playlist
 }

@@ -7,7 +7,7 @@ import com.example.youtubeapp.databinding.PlaylistItemBinding
 import com.example.youtubeapp.loadImage
 import com.example.youtubeapp.model.Item
 
-class PlaylistDetailsAdapter :
+class PlaylistDetailsAdapter(private val onClick:(item:Item)->Unit) :
     RecyclerView.Adapter<PlaylistDetailsAdapter.PlaylistDetailsViewHolder>() {
 
     private var list: ArrayList<Item> = arrayListOf()
@@ -25,6 +25,9 @@ class PlaylistDetailsAdapter :
 
     override fun onBindViewHolder(holder: PlaylistDetailsViewHolder, position: Int) {
         holder.onInit(list[position])
+        holder.itemView.setOnClickListener {
+            onClick(list[position])
+        }
     }
 
     override fun getItemCount(): Int = list.size

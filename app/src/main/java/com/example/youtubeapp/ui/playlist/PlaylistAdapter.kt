@@ -1,7 +1,5 @@
 package com.example.youtubeapp.ui.playlist
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,12 +7,10 @@ import com.example.youtubeapp.databinding.PlaylistItemBinding
 import com.example.youtubeapp.loadImage
 import com.example.youtubeapp.model.Item
 
-class PlaylistAdapter(private val context: Context, private val onClick: (item: Item) -> Unit) :
+class PlaylistAdapter(private val onClick: (item: Item) -> Unit) :
     RecyclerView.Adapter<PlaylistAdapter.PlaylistViewHolder>() {
     private var list: MutableList<Item> = ArrayList()
 
-
-    @SuppressLint("NotifyDataSetChanged")
     fun setList(lst: List<Item>) {
         list.clear()
         list.addAll(lst)
