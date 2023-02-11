@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 
-
-abstract class BaseFragment<VB: ViewBinding, VM: BaseViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
 
     protected lateinit var binding: VB
     protected abstract val viewModel: VM
@@ -23,7 +22,7 @@ abstract class BaseFragment<VB: ViewBinding, VM: BaseViewModel> : Fragment() {
         return binding.root
     }
 
-    abstract fun inflateViewBinding(inflater: LayoutInflater, container: ViewGroup?):VB
+    abstract fun inflateViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
     abstract fun initViewModel()
     abstract fun initView()
 

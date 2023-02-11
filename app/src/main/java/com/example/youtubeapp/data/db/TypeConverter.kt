@@ -25,8 +25,9 @@ object TypeConverter {
     fun pageToString(pageInfo: PageInfo): String {
         return gson.toJson(pageInfo)
     }
+
     @androidx.room.TypeConverter
     fun jsonToPageInfo(data: String): PageInfo {
-        return gson.fromJson(data,PageInfo::class.java)
+        return gson.fromJson(data, PageInfo::class.java)
     }
 }

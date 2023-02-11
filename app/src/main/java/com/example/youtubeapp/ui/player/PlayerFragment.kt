@@ -7,6 +7,8 @@ import com.example.youtubeapp.databinding.FragmentPlayerBinding
 import com.example.youtubeapp.ui.details.PlaylistDetailsFragment
 import com.example.youtubeapp.ui.details.PlaylistDetailsFragment.Companion.VIDEO_ID
 import com.example.youtubeapp.utils.youtubeListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PlayerFragment : BaseFragment<FragmentPlayerBinding, PlayerViewModel>() {
@@ -29,19 +31,20 @@ class PlayerFragment : BaseFragment<FragmentPlayerBinding, PlayerViewModel>() {
     override fun initView() {
         videoId = arguments?.getString(VIDEO_ID, "").toString()
         lifecycle.addObserver(binding.youtubePlayerView)
-        binding.youtubePlayerView.addYouTubePlayerListener(youtubeListener { youTubePlayer ->
-            youTubePlayer.loadVideo(videoId, 0F)
-        })
-        fullScreen()
-    }
+        val iFramePlayerOptions: IFramePlayerOptions = IFramePlayerOptions.Builder()
+            .controls(0)
+            .build()
 
-    private fun fullScreen() {
-        binding.btnFullScreen.setOnClickListener {
-            if (binding.youtubePlayerView.isFullScreen()) {
-                binding.youtubePlayerView.exitFullScreen()
-            } else {
-                binding.youtubePlayerView.enterFullScreen()
-            }
-        }
+        binding.youtubePlayerView.initialize(
+            youtubeListener { youTubePlayer ->
+                val defaultPlayerUI =
+                    DefaultPlayerUiController(binding.youtubePlayerView, youTubePlayer)
+                binding.youtubePlayerView.setCustomPlayerUi(defaultPlayerUI.rootView)
+                youTubePlayer.loadVideo(videoId, 0F)
+                youTubePlayer.play()
+            }, iFramePlayerOptions
+        )
     }
 }
+
+

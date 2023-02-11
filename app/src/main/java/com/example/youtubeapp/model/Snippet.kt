@@ -1,7 +1,5 @@
 package com.example.youtubeapp.model
 
-import com.example.youtubeapp.data.remote.network.Resource
-
 data class Snippet(
     var channelId: String?, // UCUXqcY7bSoBOm2Ymx3QKpMQ
     var channelTitle: String?, // INSTASAMKA

@@ -4,10 +4,11 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstan
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
 
-fun  youtubeListener(onReady:(YouTubePlayer)-> Unit) = object : YouTubePlayerListener{
+fun youtubeListener(onReady: (YouTubePlayer) -> Unit) = object : YouTubePlayerListener {
 
     override fun onApiChange(youTubePlayer: YouTubePlayer) {
     }
+
     override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
     }
 

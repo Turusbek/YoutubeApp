@@ -47,16 +47,19 @@ class PlaylistDetailsFragment : BaseFragment<FragmentDetailsPlaylistBinding,
                 }
             }
         }
-        viewModel.loading.observe(viewLifecycleOwner){
+        viewModel.loading.observe(viewLifecycleOwner) {
             binding.progressBar.isVisible = it
         }
     }
 
     override fun initView() {
-        adapter = PlaylistDetailsAdapter() {
-            findNavController().navigate(R.id.playerFragment, bundleOf(
-                VIDEO_ID to
-                    it.snippet?.resourceId?.videoId, TITLE to it.snippet?.title))
+        adapter = PlaylistDetailsAdapter {
+            findNavController().navigate(
+                R.id.playerFragment, bundleOf(
+                    VIDEO_ID to
+                            it.snippet?.resourceId?.videoId, TITLE to it.snippet?.title
+                )
+            )
         }
         val checkInternet = CheckInternet(requireContext())
         checkInternet.observe(this) { isConnected ->
@@ -66,7 +69,8 @@ class PlaylistDetailsFragment : BaseFragment<FragmentDetailsPlaylistBinding,
             binding.recyclerView.adapter = adapter
         }
     }
-    companion object{
+
+    companion object {
         const val VIDEO_ID = "videoId"
         const val TITLE = "title"
     }

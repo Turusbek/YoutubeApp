@@ -6,8 +6,9 @@ import com.example.youtubeapp.data.db.AppDatabase
 import org.koin.dsl.module
 
 val dbModule = module {
-    single { provideDb(get())}
+    single { provideDb(get()) }
 }
+
 fun provideDb(applicationContext: Context): AppDatabase {
     return Room.databaseBuilder(
         applicationContext,

@@ -49,26 +49,28 @@ class PlaylistFragment : BaseFragment<FragmentPlaylistBinding, PlaylistViewModel
     }
 
     override fun initViewModel() {
-        viewModel.getPlayList().observe(viewLifecycleOwner,){
-            when(it.status){
-                Status.SUCCESS->{
+        viewModel.getPlayList().observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.SUCCESS -> {
                     viewModel.loading.value = false
                     it.data?.items?.let { it1 -> adapter.setList(it1) }
                 }
-                Status.ERROR->{
+                Status.ERROR -> {
                     viewModel.loading.value = false
-                    e("lolo", "initViewModel: "+ it.msg )
-                }else ->{
-                viewModel.loading.value = true
+                    e("lolo", "initViewModel: " + it.msg)
+                }
+                else -> {
+                    viewModel.loading.value = true
+                }
             }
-            } }
-        viewModel.setPlaylist.observe(viewLifecycleOwner){
-            if (it.status == Status.SUCCESS){
-                Toast.makeText(requireContext(),"data saved",Toast.LENGTH_SHORT).show()
+        }
+        viewModel.setPlaylist.observe(viewLifecycleOwner) {
+            if (it.status == Status.SUCCESS) {
+                Toast.makeText(requireContext(), "data saved", Toast.LENGTH_SHORT).show()
             }
         }
 
-        viewModel.loading.observe(viewLifecycleOwner){
+        viewModel.loading.observe(viewLifecycleOwner) {
             binding.progress.isVisible = it
         }
     }

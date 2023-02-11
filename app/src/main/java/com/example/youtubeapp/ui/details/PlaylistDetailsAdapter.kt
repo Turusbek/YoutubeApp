@@ -7,7 +7,7 @@ import com.example.youtubeapp.databinding.PlaylistItemBinding
 import com.example.youtubeapp.loadImage
 import com.example.youtubeapp.model.Item
 
-class PlaylistDetailsAdapter(private val onClick:(item:Item)->Unit) :
+class PlaylistDetailsAdapter(private val onClick: (item: Item) -> Unit) :
     RecyclerView.Adapter<PlaylistDetailsAdapter.PlaylistDetailsViewHolder>() {
 
     private var list: ArrayList<Item> = arrayListOf()
